@@ -1,0 +1,50 @@
+
+class Donante {
+  - CI: string
+  - nombre: string
+  - apellidos: string
+  - grupoSanguineo: string
+  - factorRH: string
+  - direccion: string
+  - observaciones: string
+  - donaciones: List<Donacion>
+}
+
+class Donacion {
+  - fecha: int
+  - volumen: float
+  - codigoBolsa: string
+  - localizacionActual: string
+  - CIEmpleado: string
+}
+
+class Personal {
+  - CI: string
+  - nombre: string
+  - apellidos: string
+  - direccion: string
+  - cargo: string
+
+}
+
+class BancoDeSangre {
+  - direccion: string
+  - personal: List<Personal>
+  - donantes: List<Donante>
+
+  + eliminarPersonal(CI: string): void
+  + agregarDonante(donante: Donante): void
+  + eliminarDonante(CI: string): void
+  + buscarDonante(CI: string): void
+  + obtenerDonantesMayorCantidadDonaciones(): List<Donante>
+  + obtenerDonantesOplusSinDonacionesDesdeMes(mes: int): List<Donante>
+  + obtenerDonantesOrdenadosPorNombre(): List<Donante>
+  + obtenerDonantesOrdenadosPorGrupoSanguineo(): List<Donante>
+  + agregarDonante(donante: Donante): void
+  + eliminarDonante(CI: string): void
+  + modificarDonante(CI: string, donante: Donante): void
+}
+
+Donante "1" *-- "0..*" Donacion
+BancoDeSangre "1" *-- "0..*" Personal
+BancoDeSangre "1" *-- "0..*" Donante
